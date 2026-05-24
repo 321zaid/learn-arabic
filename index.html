@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Understand the Quran in Your Daily Prayers | Learn Arabic in 10 Min/Day</title>
+  <meta name="description" content="Learn essential Arabic to understand the Quran in your daily prayers. A classical approach focusing on root words and grammar in just 10 minutes a day.">
+  <meta name="theme-color" content="#0D5C46">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --emerald-900: #0D5C46;
+      --emerald-700: #1A7A5C;
+      --emerald-500: #2A9D73;
+      --emerald-50: #ECFDF5;
+      --gold: #C9A84C;
+      --gold-light: #E8D48B;
+      --gold-dark: #A8872A;
+      --cream: #F8F6F1;
+      --warm-white: #FFFCF7;
+      --text-dark: #1A1A1A;
+      --text-muted: #5C5C5C;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    .font-arabic { font-family: 'Amiri', serif; }
+
+    .text-gold { color: var(--gold); }
+    .text-emerald { color: var(--emerald-900); }
+    .bg-emerald { background: var(--emerald-900); }
+    .bg-gold { background: var(--gold); }
+    .bg-cream { background: var(--cream); }
+    .bg-warm-white { background: var(--warm-white); }
+    .border-gold { border-color: var(--gold); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2.25rem;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #1A1A1A;
+      font-weight: 700;
+      font-size: 1.125rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201, 168, 76, 0.45);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: var(--emerald-900);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(13, 92, 70, 0.3);
+      text-decoration: none;
+    }
+    .btn-secondary:hover {
+      background: var(--emerald-700);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(13, 92, 70, 0.4);
+    }
+
+    .section-padding { padding: 4rem 1.5rem; }
+    @media (min-width: 768px) { .section-padding { padding: 6rem 2rem; } }
+
+    .container-narrow { max-width: 72rem; margin: 0 auto; }
+
+    .hero-gradient {
+      background: linear-gradient(165deg, #0D5C46 0%, #1A7A5C 50%, #0D5C46 100%);
+    }
+
+    .card-shadow { box-shadow: 0 2px 20px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04); }
+    .card-shadow-hover:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06); }
+
+    .feature-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      background: var(--emerald-50);
+      border-radius: 1rem;
+      flex-shrink: 0;
+    }
+
+    .gold-divider {
+      width: 3rem;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 1.25rem auto;
+    }
+
+    .quiz-option {
+      display: block;
+      width: 100%;
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.625rem;
+      text-align: left;
+      background: var(--cream);
+      border: 2px solid transparent;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      color: var(--text-dark);
+    }
+    .quiz-option:hover:not(.disabled) { border-color: var(--emerald-500); background: #fff; }
+    .quiz-option.correct { border-color: #16a34a; background: #f0fdf4; color: #166534; }
+    .quiz-option.incorrect { border-color: #dc2626; background: #fef2f2; color: #991b1b; }
+    .quiz-option.disabled { cursor: default; opacity: 0.7; }
+    .quiz-option.disabled:hover { border-color: transparent; }
+
+    .audio-player {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    .audio-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 3rem;
+    }
+    .audio-wave .bar {
+      width: 4px;
+      background: var(--emerald-500);
+      border-radius: 2px;
+      transition: height 0.15s ease;
+      height: 20%;
+    }
+    .audio-wave.playing .bar {
+      animation: waveAnim 0.8s ease-in-out infinite alternate;
+    }
+    .audio-wave.playing .bar:nth-child(1) { animation-delay: 0s; }
+    .audio-wave.playing .bar:nth-child(2) { animation-delay: 0.1s; }
+    .audio-wave.playing .bar:nth-child(3) { animation-delay: 0.2s; }
+    .audio-wave.playing .bar:nth-child(4) { animation-delay: 0.05s; }
+    .audio-wave.playing .bar:nth-child(5) { animation-delay: 0.15s; }
+    .audio-wave.playing .bar:nth-child(6) { animation-delay: 0.25s; }
+    .audio-wave.playing .bar:nth-child(7) { animation-delay: 0.08s; }
+    .audio-wave.playing .bar:nth-child(8) { animation-delay: 0.18s; }
+    .audio-wave.playing .bar:nth-child(9) { animation-delay: 0.28s; }
+    .audio-wave.playing .bar:nth-child(10) { animation-delay: 0.12s; }
+
+    @keyframes waveAnim {
+      0% { height: 15%; }
+      100% { height: 85%; }
+    }
+
+    .audio-progress-track {
+      width: 100%;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .audio-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--emerald-500), var(--emerald-900));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .guarantee-seal {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--emerald-50);
+      border-radius: 0.75rem;
+      border: 1px solid rgba(13, 92, 70, 0.15);
+    }
+
+    .product-mockup {
+      background: linear-gradient(135deg, var(--emerald-900), #08382c);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-mockup::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 20%, rgba(201,168,76,0.15) 0%, transparent 60%);
+    }
+    .product-mockup::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+    .mockup-book {
+      position: relative;
+      z-index: 1;
+      width: 120px;
+      height: 160px;
+      background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+    }
+    .mockup-book::after {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 1px;
+    }
+    .mockup-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 12px;
+      background: var(--gold-dark);
+      border-radius: 6px 0 0 6px;
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 640px) {
+      .section-padding { padding: 3rem 1.25rem; }
+      .btn-primary { font-size: 1rem; padding: 0.875rem 1.75rem; }
+      .product-mockup { min-height: 220px; }
+    }
+
+    .nav-scroll {
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav-scroll.scrolled {
+      background: rgba(13, 92, 70, 0.97);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 nav-scroll" id="navbar">
+    <div class="px-4 py-3 md:py-4 md:px-6 flex items-center justify-between max-w-7xl mx-auto">
+      <span class="text-white font-bold text-lg md:text-xl tracking-tight" style="font-family:'Inter',sans-serif">
+        <span class="text-gold">Q</span>alam<span class="text-gold">.</span>
+      </span>
+      <div class="flex items-center gap-3 md:gap-5">
+        <a href="#features" class="text-white/80 hover:text-gold text-sm md:text-base transition-colors">Features</a>
+        <a href="#pricing" class="text-white/80 hover:text-gold text-sm md:text-base transition-colors">Get It</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero-gradient min-h-[90vh] flex items-center section-padding pt-24 md:pt-28">
+    <div class="container-narrow w-full">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+        <div class="text-center md:text-left">
+          <div class="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-gold-light text-xs md:text-sm font-medium mb-5 border border-white/10">
+            &#127775; Premium Digital Download
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-white leading-tight mb-5">
+            Understand the <span class="text-gold">Quran</span> in Your Daily Prayers.
+            <span class="block text-xl sm:text-2xl md:text-3xl font-semibold mt-3 text-emerald-50/90">Learn Essential Arabic in Just <span class="text-gold">10 Minutes</span> a Day.</span>
+          </h1>
+          <p class="text-emerald-50/80 text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
+            This is not casual street slang. This is a <strong class="text-white">classical, root-word approach</strong> designed specifically to unlock the meaning of every verse you recite in salah.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+            <a href="#pricing" class="btn-primary">
+              Get Instant Access Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#features" class="text-white/70 hover:text-gold text-sm font-medium transition-colors">
+              See what's inside &darr;
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="product-mockup w-full max-w-xs md:max-w-sm">
+            <div class="mockup-book relative">
+              <div class="mockup-spine"></div>
+              <span class="font-arabic text-emerald-900 text-2xl font-bold relative z-10 leading-none" style="margin-top:auto">&#64830; &#1575;&#1604;&#1602;&#1585;&#1570;&#1606; &#64831;</span>
+              <span class="text-emerald-900/60 text-[10px] font-semibold uppercase tracking-widest mt-1 relative z-10" style="margin-bottom:auto">Arabic Guide</span>
+            </div>
+            <p class="text-white/60 text-xs mt-4 text-center font-medium tracking-wide relative z-10">
+              10-Day Blueprint &bull; Audio &bull; Flashcards
+            </p>
+            <div class="flex items-center gap-3 mt-4 relative z-10">
+              <span class="text-gold text-2xl font-bold">$27</span>
+              <span class="text-white/40 text-sm line-through">$47</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EMPATHY & SOLUTION SECTION ========== -->
+  <section class="section-padding bg-warm-white" id="empathy">
+    <div class="container-narrow">
+      <div class="max-w-3xl mx-auto">
+        <span class="text-gold-dark text-sm font-semibold uppercase tracking-widest block text-center mb-3">Why this is different</span>
+        <div class="gold-divider"></div>
+        <h2 class="text-2xl md:text-4xl font-bold text-emerald text-center mb-8 leading-tight">
+          Standard apps teach you to order coffee.<br>
+          <span class="text-gold-dark">This teaches you to connect with your Creator.</span>
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-6 mt-10">
+          <div class="bg-white rounded-xl p-6 card-shadow border-l-4 border-red-300">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">&#10060;</span>
+              <h3 class="font-bold text-lg text-gray-800">Typical Language Apps</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+              <li>&bull; Focus on travel phrases &amp; casual slang</li>
+              <li>&bull; No connection to Quranic grammar</li>
+              <li>&bull; Teach you to "speak" not to "understand"</li>
+              <li>&bull; Hundreds of irrelevant vocabulary words</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-xl p-6 card-shadow border-l-4 border-emerald-500">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">&#9989;</span>
+              <h3 class="font-bold text-lg text-emerald-900">This Quranic Guide</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+              <li>&bull; Classical root-word &amp; grammar approach</li>
+              <li>&bull; Every word taught appears in salah</li>
+              <li>&bull; Understand, not just recite</li>
+              <li>&bull; 200高频 Quranic words &mdash; zero filler</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES GRID ========== -->
+  <section class="section-padding bg-cream" id="features">
+    <div class="container-narrow">
+      <span class="text-gold-dark text-sm font-semibold uppercase tracking-widest block text-center mb-3">What you get</span>
+      <div class="gold-divider"></div>
+      <h2 class="text-2xl md:text-4xl font-bold text-emerald text-center mb-12 leading-tight">
+        Everything You Need in One Download
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 md:p-7 card-shadow card-shadow-hover transition-all duration-300 fade-in-up">
+          <div class="feature-icon mb-4">&#128216;</div>
+          <h3 class="font-bold text-lg text-emerald-900 mb-2">10-Day Step-by-Step Blueprint</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">A bite-sized, structured curriculum that fits a busy daily routine. Each day builds on the last &mdash; no overwhelm, just steady progress.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 md:p-7 card-shadow card-shadow-hover transition-all duration-300 fade-in-up">
+          <div class="feature-icon mb-4">&#128266;</div>
+          <h3 class="font-bold text-lg text-emerald-900 mb-2">Embedded Pronunciation Audio</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Crystal-clear audio tracks to master tricky vowels and letters. Hear the correct makharij (articulation) for every word you learn.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 md:p-7 card-shadow card-shadow-hover transition-all duration-300 fade-in-up">
+          <div class="feature-icon mb-4">&#128241;</div>
+          <h3 class="font-bold text-lg text-emerald-900 mb-2">Anki Flashcard Vault</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">A pre-made deck of 200 high-frequency Quranic words ready to import straight to your phone. Spaced repetition for permanent retention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AUDIO PREVIEW ========== -->
+  <section class="section-padding bg-warm-white" id="audio-preview">
+    <div class="container-narrow max-w-2xl">
+      <span class="text-gold-dark text-sm font-semibold uppercase tracking-widest block text-center mb-3">Hear it for yourself</span>
+      <div class="gold-divider"></div>
+      <h2 class="text-2xl md:text-3xl font-bold text-emerald text-center mb-4 leading-tight">
+        Sample Pronunciation Lesson
+      </h2>
+      <p class="text-gray-600 text-sm md:text-base text-center mb-8 max-w-lg mx-auto">
+        Listen to a sample from Day 3 &mdash; mastering the letter &#1593; (<em>&#8216;Ayn</em>) with common Quranic examples.
+      </p>
+
+      <div class="audio-player" id="audioPlayer">
+        <div class="flex items-center gap-4 mb-4">
+          <button id="playBtn" class="w-12 h-12 rounded-full bg-emerald flex items-center justify-center text-white hover:bg-emerald-700 transition-all active:scale-95 flex-shrink-0 shadow-md" aria-label="Play audio preview">
+            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19 8 5"/></svg>
+            <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          </button>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-semibold text-sm text-emerald-900 tracking-tight">&#1593;&#1614;&#1576;&#1618;&#1583;&#1615; <!-- 'Abd --> Pronunciation</span>
+              <span class="text-xs text-gray-400 font-mono" id="timeDisplay">0:00</span>
+            </div>
+            <div class="audio-progress-track" id="progressTrack">
+              <div class="audio-progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </div>
+        <div class="audio-wave" id="audioWave">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+        <div class="flex items-center gap-3 mt-4 text-xs text-gray-500">
+          <span class="inline-flex items-center gap-1">&#9679; Day 3 Lesson</span>
+          <span class="text-gray-300">|</span>
+          <span class="inline-flex items-center gap-1">&#128266; Sample: 0:12</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INTERACTIVE MINI QUIZ ========== -->
+  <section class="section-padding bg-cream" id="quiz">
+    <div class="container-narrow max-w-2xl">
+      <span class="text-gold-dark text-sm font-semibold uppercase tracking-widest block text-center mb-3">Test your knowledge</span>
+      <div class="gold-divider"></div>
+      <h2 class="text-2xl md:text-3xl font-bold text-emerald text-center mb-3 leading-tight">
+        Mini Arabic Root Quiz
+      </h2>
+      <p class="text-gray-600 text-sm md:text-base text-center mb-8 max-w-md mx-auto">
+        See how the root-word method works. Answer 3 quick questions.
+      </p>
+
+      <div id="quizContainer" class="bg-white rounded-xl p-5 md:p-8 card-shadow">
+        <div id="quizView">
+          <div class="mb-1 flex items-center justify-between text-xs text-gray-400 font-medium">
+            <span id="quizProgress">Question 1 of 3</span>
+            <span id="quizScoreDisplay">Score: 0</span>
+          </div>
+          <div class="w-full h-1.5 bg-gray-100 rounded-full mb-6 overflow-hidden">
+            <div id="quizProgressBar" class="h-full bg-gold rounded-full transition-all duration-500" style="width:0%"></div>
+          </div>
+          <h3 class="font-bold text-lg md:text-xl text-emerald-900 mb-2" id="quizQuestion">Loading...</h3>
+          <p class="text-xs text-gray-500 mb-5" id="quizHint"></p>
+          <div id="quizOptions"></div>
+          <div id="quizFeedback" class="mt-4 p-3 rounded-lg text-sm font-medium hidden"></div>
+        </div>
+        <div id="quizResult" class="hidden text-center py-6">
+          <div class="text-5xl mb-4" id="resultEmoji">&#127891;</div>
+          <h3 class="text-2xl font-bold text-emerald-900 mb-2" id="resultTitle">Great Work!</h3>
+          <p class="text-gray-600 mb-1" id="resultMessage">You got <strong id="resultScore">0/3</strong> correct!</p>
+          <p class="text-xs text-gray-400 mb-6" id="resultAdvice">Review the root chart in the guide to strengthen your knowledge.</p>
+          <button onclick="resetQuiz()" class="btn-secondary text-sm">&#8635; Retake Quiz</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING / CHECKOUT ========== -->
+  <section class="section-padding hero-gradient" id="pricing">
+    <div class="container-narrow max-w-2xl">
+      <span class="text-gold-light text-sm font-semibold uppercase tracking-widest block text-center mb-3">Start today</span>
+      <div class="w-12 h-0.5 bg-gold/60 rounded-full mx-auto mb-4"></div>
+      <h2 class="text-2xl md:text-4xl font-bold text-white text-center mb-4 leading-tight">
+            Ready to Understand the Quran in Your Prayers?
+      </h2>
+      <p class="text-emerald-50/70 text-sm md:text-base text-center mb-8 max-w-lg mx-auto">
+        Join thousands of Muslims who have transformed their salah through the classical root-word method.
+      </p>
+
+      <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow">
+        <div class="text-center mb-6">
+          <span class="text-gray-400 text-sm line-through block">$47</span>
+          <span class="text-5xl md:text-6xl font-extrabold text-emerald-900">$27</span>
+          <span class="text-gray-500 text-sm block mt-1">one-time payment &bull; lifetime access</span>
+        </div>
+
+        <div class="space-y-3 mb-6 text-sm text-gray-600">
+          <div class="flex items-center gap-3"><span class="text-emerald-500 font-bold">&#10003;</span> 10-Day Step-by-Step PDF Blueprint</div>
+          <div class="flex items-center gap-3"><span class="text-emerald-500 font-bold">&#10003;</span> Embedded Pronunciation Audio Tracks</div>
+          <div class="flex items-center gap-3"><span class="text-emerald-500 font-bold">&#10003;</span> Anki Flashcard Vault (200 Quranic Words)</div>
+          <div class="flex items-center gap-3"><span class="text-emerald-500 font-bold">&#10003;</span> Bonus: Root Word Reference Chart</div>
+          <div class="flex items-center gap-3"><span class="text-emerald-500 font-bold">&#10003;</span> Lifetime Updates &amp; Support</div>
+        </div>
+
+        <div class="flex flex-col gap-3 mb-5">
+          <a href="https://app.gumroad.com/checkout" target="_blank" rel="noopener noreferrer"
+             class="btn-primary w-full text-center text-base"
+             data-checkout="gumroad"
+             id="checkoutGumroad">
+            Buy on Gumroad &mdash; $27
+          </a>
+          <a href="https://app.lemonsqueezy.com/checkout" target="_blank" rel="noopener noreferrer"
+             class="btn-secondary w-full text-center text-base bg-emerald-700 hover:bg-emerald-800"
+             data-checkout="lemonsqueezy"
+             id="checkoutLemon">
+            Buy on Lemon Squeezy &mdash; $27
+          </a>
+        </div>
+
+        <div class="guarantee-seal">
+          <span class="text-2xl">&#128260;</span>
+          <div>
+            <p class="font-bold text-emerald-900 text-sm">100% Satisfaction Guarantee</p>
+            <p class="text-xs text-gray-500">If you don't feel more connected to your salah within 30 days, we'll refund every penny. No questions asked.</p>
+          </div>
+        </div>
+
+        <p class="text-center text-xs text-gray-400 mt-5 leading-relaxed">
+          Secure checkout powered by Gumroad &amp; Lemon Squeezy &bull; Instant digital download &bull; No shipping required
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-emerald py-8 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <span class="text-white font-bold text-lg" style="font-family:'Inter',sans-serif">
+        <span class="text-gold">Q</span>alam<span class="text-gold">.</span>
+      </span>
+      <p class="text-emerald-50/60 text-xs mt-3 leading-relaxed max-w-xs mx-auto">
+        A premium digital resource dedicated to helping Muslims understand the Quran in their daily prayers through classical Arabic root-word learning.
+      </p>
+      <div class="mt-4 flex items-center justify-center gap-4 text-emerald-50/50 text-xs">
+        <span>&copy; 2026 Qalam Arabic. All rights reserved.</span>
+        <span class="text-emerald-50/20">|</span>
+        <span>Built with &#128154; for the ummah</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+
+      // ========== NAVBAR SCROLL EFFECT ==========
+      const navbar = document.getElementById('navbar');
+      let ticking = false;
+      function handleScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            if (window.scrollY > 20) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      // ========== SCROLL REVEAL ==========
+      const revealEls = document.querySelectorAll('.fade-in-up');
+      const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+      // ========== AUDIO PLAYER ==========
+      var audioCtx = null;
+      var oscillator = null;
+      var gainNode = null;
+      var isPlaying = false;
+      var audioDuration = 12;
+      var audioCurrentTime = 0;
+      var audioInterval = null;
+      var audioStartTime = 0;
+
+      var playBtn = document.getElementById('playBtn');
+      var playIcon = document.getElementById('playIcon');
+      var pauseIcon = document.getElementById('pauseIcon');
+      var progressFill = document.getElementById('progressFill');
+      var progressTrack = document.getElementById('progressTrack');
+      var timeDisplay = document.getElementById('timeDisplay');
+      var audioWave = document.getElementById('audioWave');
+
+      function formatTime(seconds) {
+        var m = Math.floor(seconds / 60);
+        var s = Math.floor(seconds % 60);
+        return m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function startAudio() {
+        try {
+          if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+          gainNode = audioCtx.createGain();
+          gainNode.connect(audioCtx.destination);
+          gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+
+          oscillator = audioCtx.createOscillator();
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(220, audioCtx.currentTime);
+          oscillator.frequency.linearRampToValueAtTime(280, audioCtx.currentTime + 2);
+          oscillator.frequency.linearRampToValueAtTime(220, audioCtx.currentTime + 4);
+          oscillator.frequency.linearRampToValueAtTime(330, audioCtx.currentTime + 6);
+          oscillator.frequency.linearRampToValueAtTime(220, audioCtx.currentTime + 8);
+          oscillator.frequency.linearRampToValueAtTime(260, audioCtx.currentTime + 10);
+          oscillator.frequency.linearRampToValueAtTime(200, audioCtx.currentTime + 12);
+
+          var now = audioCtx.currentTime;
+          gainNode.gain.setValueAtTime(0.01, now);
+          gainNode.gain.linearRampToValueAtTime(0.15, now + 0.5);
+          gainNode.gain.setValueAtTime(0.15, now + 10);
+          gainNode.gain.linearRampToValueAtTime(0.01, now + audioDuration);
+
+          oscillator.connect(gainNode);
+          oscillator.start(now);
+          oscillator.stop(now + audioDuration);
+        } catch(e) {
+          console.log('Audio context not available, playing silently');
+        }
+      }
+
+      function stopAudio() {
+        try {
+          if (oscillator) { oscillator.stop(); oscillator.disconnect(); oscillator = null; }
+          if (gainNode) { gainNode.disconnect(); gainNode = null; }
+        } catch(e) {}
+      }
+
+      function updateProgress() {
+        if (!isPlaying) return;
+        var elapsed = (Date.now() - audioStartTime) / 1000;
+        audioCurrentTime = Math.min(elapsed, audioDuration);
+        var pct = (audioCurrentTime / audioDuration) * 100;
+        progressFill.style.width = Math.min(pct, 100) + '%';
+        timeDisplay.textContent = formatTime(audioCurrentTime);
+
+        if (audioCurrentTime >= audioDuration) { stopPlayback(); }
+      }
+
+      function stopPlayback() {
+        isPlaying = false;
+        stopAudio();
+        if (audioInterval) { clearInterval(audioInterval); audioInterval = null; }
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+        audioWave.classList.remove('playing');
+        timeDisplay.textContent = formatTime(audioDuration);
+        progressFill.style.width = '100%';
+      }
+
+      playBtn.addEventListener('click', function() {
+        if (!isPlaying) {
+          isPlaying = true;
+          audioCurrentTime = 0;
+          audioStartTime = Date.now();
+          progressFill.style.width = '0%';
+          playIcon.classList.add('hidden');
+          pauseIcon.classList.remove('hidden');
+          audioWave.classList.add('playing');
+          startAudio();
+          if (audioInterval) clearInterval(audioInterval);
+          audioInterval = setInterval(updateProgress, 100);
+        } else {
+          isPlaying = false;
+          if (audioInterval) { clearInterval(audioInterval); audioInterval = null; }
+          stopAudio();
+          playIcon.classList.remove('hidden');
+          pauseIcon.classList.add('hidden');
+          audioWave.classList.remove('playing');
+        }
+      });
+
+      progressTrack.addEventListener('click', function(e) {
+        var rect = progressTrack.getBoundingClientRect();
+        var pct = (e.clientX - rect.left) / rect.width;
+        audioCurrentTime = pct * audioDuration;
+        if (!isPlaying) {
+          progressFill.style.width = (pct * 100) + '%';
+          timeDisplay.textContent = formatTime(audioCurrentTime);
+        } else {
+          audioStartTime = Date.now() - (audioCurrentTime * 1000);
+          stopAudio();
+          var remainder = audioDuration - audioCurrentTime;
+          if (remainder > 0.5) {
+            try {
+              if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+              gainNode = audioCtx.createGain();
+              gainNode.connect(audioCtx.destination);
+              oscillator = audioCtx.createOscillator();
+              oscillator.type = 'sine';
+              var fNow = audioCtx.currentTime;
+              oscillator.frequency.setValueAtTime(200 + audioCurrentTime * 8, fNow);
+              oscillator.frequency.linearRampToValueAtTime(200, fNow + remainder);
+              gainNode.gain.setValueAtTime(0.01, fNow);
+              gainNode.gain.linearRampToValueAtTime(0.15, fNow + 0.3);
+              gainNode.gain.setValueAtTime(0.15, fNow + remainder - 0.3);
+              gainNode.gain.linearRampToValueAtTime(0.01, fNow + remainder);
+              oscillator.connect(gainNode);
+              oscillator.start(fNow);
+              oscillator.stop(fNow + remainder);
+            } catch(e) {}
+          }
+        }
+      });
+
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden && isPlaying) {
+          stopPlayback();
+        }
+      });
+
+      // ========== MINI QUIZ ==========
+      var quizQuestions = [
+        {
+          question: 'The Arabic root \u0643-\u062A-\u0628 (K-T-B) is most closely associated with:',
+          hint: 'Think about what "kitab" (book) and "kataba" (he wrote) share.',
+          options: ['Eating', 'Writing', 'Sleeping', 'Running'],
+          correct: 1,
+          explanation: 'K-T-B (\u0643-\u062A-\u0628) is the root for writing-related words: kitab (book), kataba (he wrote), maktab (office/desk).'
+        },
+        {
+          question: 'The root \u0633-\u0644-\u0645 (S-L-M) conveys the core idea of:',
+          hint: 'Consider words like Islam, Muslim, Salam (\u0633\u0644\u0627\u0645).',
+          options: ['War', 'Peace', 'Knowledge', 'Wealth'],
+          correct: 1,
+          explanation: 'S-L-M (\u0633-\u0644-\u0645) is the root for peace and submission: Islam, Muslim, Salam (peace), Istislam (surrender).'
+        },
+        {
+          question: 'Surah Al-Fatihah\u2019s first word, \u0671\u0644\u0652\u062D\u064E\u0645\u0652\u062F\u064F (Alhamdu), comes from which root?',
+          hint: 'The word \u0627\u0644\u062D\u0645\u062F means "all praise."',
+          options: ['\u062D-\u0645-\u062F (H-M-D)', '\u0643-\u0631-\u0645 (K-R-M)', '\u0633-\u0628-\u062D (S-B-H)', '\u0639-\u0644-\u0645 (\u02BFL-M)'],
+          correct: 0,
+          explanation: 'Alhamdu (\u0671\u0644\u0652\u062D\u064E\u0645\u0652\u062F\u064F) comes from \u062D-\u0645-\u062F (H-M-D), meaning praise or thanks.'
+        }
+      ];
+
+      var currentQ = 0;
+      var score = 0;
+      var answered = false;
+
+      var quizView = document.getElementById('quizView');
+      var quizResult = document.getElementById('quizResult');
+      var quizQuestion = document.getElementById('quizQuestion');
+      var quizHint = document.getElementById('quizHint');
+      var quizOptions = document.getElementById('quizOptions');
+      var quizFeedback = document.getElementById('quizFeedback');
+      var quizProgress = document.getElementById('quizProgress');
+      var quizProgressBar = document.getElementById('quizProgressBar');
+      var quizScoreDisplay = document.getElementById('quizScoreDisplay');
+      var resultEmoji = document.getElementById('resultEmoji');
+
+      function renderQuestion() {
+        var q = quizQuestions[currentQ];
+        quizQuestion.textContent = q.question;
+        quizHint.textContent = q.hint;
+        quizProgress.textContent = 'Question ' + (currentQ + 1) + ' of ' + quizQuestions.length;
+        quizProgressBar.style.width = ((currentQ / quizQuestions.length) * 100) + '%';
+        quizScoreDisplay.textContent = 'Score: ' + score;
+        quizFeedback.classList.add('hidden');
+        answered = false;
+
+        quizOptions.innerHTML = '';
+        q.options.forEach(function(opt, idx) {
+          var btn = document.createElement('button');
+          btn.className = 'quiz-option';
+          btn.textContent = opt;
+          btn.dataset.idx = idx;
+          btn.addEventListener('click', function() { handleAnswer(idx); });
+          quizOptions.appendChild(btn);
+        });
+      }
+
+      function handleAnswer(selected) {
+        if (answered) return;
+        answered = true;
+        var q = quizQuestions[currentQ];
+        var buttons = quizOptions.querySelectorAll('.quiz-option');
+        buttons.forEach(function(btn, idx) {
+          btn.classList.add('disabled');
+          if (idx === q.correct) { btn.classList.add('correct'); }
+          else if (idx === selected && idx !== q.correct) { btn.classList.add('incorrect'); }
+        });
+
+        if (selected === q.correct) { score++; }
+
+        quizScoreDisplay.textContent = 'Score: ' + score;
+
+        var isCorrect = selected === q.correct;
+        quizFeedback.classList.remove('hidden');
+        quizFeedback.className = 'mt-4 p-3 rounded-lg text-sm font-medium ' + (isCorrect ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-red-50 text-red-800 border border-red-200');
+        quizFeedback.innerHTML = (isCorrect ? '&#10003; Correct! ' : '&#10007; Not quite. ') + q.explanation;
+
+        currentQ++;
+        if (currentQ < quizQuestions.length) {
+          setTimeout(renderQuestion, 2200);
+        } else {
+          setTimeout(showResults, 2200);
+        }
+      }
+
+      function showResults() {
+        quizView.classList.add('hidden');
+        quizResult.classList.remove('hidden');
+        quizProgressBar.style.width = '100%';
+        resultEmoji.textContent = score === 3 ? '\uD83C\uDFC6' : score >= 2 ? '\uD83D\uDCA1' : '\uD83D\uDCDA';
+        document.getElementById('resultTitle').textContent = score === 3 ? 'Perfect Score! You\'re a Natural!' : score >= 2 ? 'Great Start!' : 'Keep Learning!';
+        document.getElementById('resultScore').textContent = score + '/' + quizQuestions.length;
+        document.getElementById('resultAdvice').textContent = score === 3 ? 'You already have a strong foundation. The guide will take you even deeper.' : 'Imagine how sharp you\u2019ll be after the full 10-day guide!';
+      }
+
+      function resetQuiz() {
+        currentQ = 0;
+        score = 0;
+        quizView.classList.remove('hidden');
+        quizResult.classList.add('hidden');
+        renderQuestion();
+      }
+
+      renderQuestion();
+      window.resetQuiz = resetQuiz;
+
+      // ========== AFFILIATE URL PARAMETER HANDLING ==========
+      function setupAffiliateLinks() {
+        var params = new URLSearchParams(window.location.search);
+        var ref = params.get('ref') || params.get('affiliate') || params.get('aff') || '';
+        if (ref) {
+          var gumroad = document.getElementById('checkoutGumroad');
+          var lemon = document.getElementById('checkoutLemon');
+          if (gumroad) {
+            var gUrl = new URL(gumroad.href);
+            gUrl.searchParams.set('ref', ref);
+            gumroad.href = gUrl.toString();
+          }
+          if (lemon) {
+            var lUrl = new URL(lemon.href);
+            lUrl.searchParams.set('checkout[affiliate_token]', ref);
+            lemon.href = lUrl.toString();
+          }
+        }
+      }
+      setupAffiliateLinks();
+
+    })();
+  </script>
+</body>
+</html>
