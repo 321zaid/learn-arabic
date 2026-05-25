@@ -136,27 +136,6 @@
       margin: 1.25rem auto;
     }
 
-    .quiz-option {
-      display: block;
-      width: 100%;
-      padding: 1rem 1.25rem;
-      margin-bottom: 0.625rem;
-      text-align: left;
-      background: var(--cream);
-      border: 2px solid transparent;
-      border-radius: 0.75rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-family: inherit;
-      color: var(--text-dark);
-    }
-    .quiz-option:hover:not(.disabled) { border-color: var(--emerald-500); background: #fff; }
-    .quiz-option.correct { border-color: #16a34a; background: #f0fdf4; color: #166534; }
-    .quiz-option.incorrect { border-color: #dc2626; background: #fef2f2; color: #991b1b; }
-    .quiz-option.disabled { cursor: default; opacity: 0.7; }
-    .quiz-option.disabled:hover { border-color: transparent; }
-
     .audio-player {
       background: #fff;
       border-radius: 1.25rem;
@@ -786,43 +765,6 @@
     </div>
   </section>
 
-  <!-- ========== INTERACTIVE MINI QUIZ ========== -->
-  <section class="section-padding bg-cream" id="quiz">
-    <div class="container-narrow max-w-2xl">
-      <span class="text-gold-dark text-sm font-semibold uppercase tracking-widest block text-center mb-3">See your potential</span>
-      <div class="gold-divider"></div>
-      <h2 class="text-2xl md:text-3xl font-bold text-emerald text-center mb-3 leading-tight">
-        See What You Will Achieve By Day 4
-      </h2>
-      <p class="text-gray-600 text-sm md:text-base text-center mb-8 max-w-lg mx-auto">
-        You don't need to know any Arabic right now. See how our root-word approach helps you start recognizing familiar words &mdash; even on your first try.
-      </p>
-
-      <div id="quizContainer" class="bg-white rounded-xl p-5 md:p-8 card-shadow">
-        <div id="quizView">
-          <div class="mb-1 flex items-center justify-between text-xs text-gray-400 font-medium">
-            <span id="quizProgress">Question 1 of 3</span>
-            <span id="quizScoreDisplay">Score: 0</span>
-          </div>
-          <div class="w-full h-1.5 bg-gray-100 rounded-full mb-6 overflow-hidden">
-            <div id="quizProgressBar" class="h-full bg-gold rounded-full transition-all duration-500" style="width:0%"></div>
-          </div>
-          <h3 class="font-bold text-lg md:text-xl text-emerald-900 mb-2" id="quizQuestion">Loading...</h3>
-          <p class="text-xs text-gray-500 mb-5" id="quizHint"></p>
-          <div id="quizOptions"></div>
-          <div id="quizFeedback" class="mt-4 p-3 rounded-lg text-sm font-medium hidden"></div>
-        </div>
-        <div id="quizResult" class="hidden text-center py-6">
-          <div class="text-5xl mb-4" id="resultEmoji">&#127891;</div>
-          <h3 class="text-2xl font-bold text-emerald-900 mb-2" id="resultTitle">Great Work!</h3>
-          <p class="text-gray-600 mb-1" id="resultMessage">You got <strong id="resultScore">0/3</strong> correct!</p>
-          <p class="text-xs text-gray-400 mb-6" id="resultAdvice">Review the root chart in the guide to strengthen your knowledge.</p>
-          <button onclick="resetQuiz()" class="btn-secondary text-sm">&#8635; Retake Quiz</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ========== DAY 1 INTERACTIVE EXPERIENCE ========== -->
   <section class="section-padding" style="background: linear-gradient(165deg, #0D5C46 0%, #1A7A5C 50%, #0D5C46 100%);" id="day1-experience">
     <div class="container-narrow max-w-3xl">
@@ -1220,116 +1162,6 @@
           }
         });
       });
-
-      // ========== MINI QUIZ ==========
-      var quizQuestions = [
-        {
-          question: 'The root K-T-B (\u0643-\u062A-\u0628) always relates to \u201cwriting\u201d. Knowing this, what do you think \u201cKitab\u201d means?',
-          hint: 'Think about what a \u201ckitab\u201d is in an Islamic context.',
-          options: ['Book', 'School', 'Pen'],
-          correct: 0,
-          explanation: '\u201cKitab\u201d (\u0643\u0650\u062A\u064E\u0627\u0628) means \u201cbook\u201d. Same root as \u201ckataba\u201d (he wrote). You just decoded your first Arabic word!'
-        },
-        {
-          question: 'The root S-L-M (\u0633-\u0644-\u0645) relates to \u201cpeace and safety\u201d. What does \u201cSalam\u201d mean?',
-          hint: 'One of Allah\u2019s 99 names is As-Salam.',
-          options: ['War', 'Peace', 'Journey'],
-          correct: 1,
-          explanation: '\u201cSalam\u201d (\u0633\u064E\u0644\u0627\u0645\u064C) means \u201cpeace\u201d. It shares its root with \u201cIslam\u201d and \u201cMuslim\u201d \u2014 all built on S-L-M.'
-        },
-        {
-          question: 'The root H-M-D (\u062D-\u0645-\u062F) relates to \u201cpraise\u201d. What does \u201cAlhamdulillah\u201d start with?',
-          hint: 'You say this in every single prayer.',
-          options: ['Praise be to God', 'Seek forgiveness', 'Stand in prayer'],
-          correct: 0,
-          explanation: '\u201cAlhamdulillah\u201d (\u0671\u0644\u0652\u062D\u064E\u0645\u0652\u062F\u064F \u0644\u0650\u0644\u0647\u0650) means \u201cAll praise is due to God\u201d \u2014 starting with \u062D-\u0645-\u062F (H-M-D), the root for praise.'
-        }
-      ];
-
-      var currentQ = 0;
-      var score = 0;
-      var answered = false;
-
-      var quizView = document.getElementById('quizView');
-      var quizResult = document.getElementById('quizResult');
-      var quizQuestion = document.getElementById('quizQuestion');
-      var quizHint = document.getElementById('quizHint');
-      var quizOptions = document.getElementById('quizOptions');
-      var quizFeedback = document.getElementById('quizFeedback');
-      var quizProgress = document.getElementById('quizProgress');
-      var quizProgressBar = document.getElementById('quizProgressBar');
-      var quizScoreDisplay = document.getElementById('quizScoreDisplay');
-      var resultEmoji = document.getElementById('resultEmoji');
-
-      function renderQuestion() {
-        var q = quizQuestions[currentQ];
-        quizQuestion.textContent = q.question;
-        quizHint.textContent = q.hint;
-        quizProgress.textContent = 'Question ' + (currentQ + 1) + ' of ' + quizQuestions.length;
-        quizProgressBar.style.width = ((currentQ / quizQuestions.length) * 100) + '%';
-        quizScoreDisplay.textContent = 'Score: ' + score;
-        quizFeedback.classList.add('hidden');
-        answered = false;
-
-        quizOptions.innerHTML = '';
-        q.options.forEach(function(opt, idx) {
-          var btn = document.createElement('button');
-          btn.className = 'quiz-option';
-          btn.textContent = opt;
-          btn.dataset.idx = idx;
-          btn.addEventListener('click', function() { handleAnswer(idx); });
-          quizOptions.appendChild(btn);
-        });
-      }
-
-      function handleAnswer(selected) {
-        if (answered) return;
-        answered = true;
-        var q = quizQuestions[currentQ];
-        var buttons = quizOptions.querySelectorAll('.quiz-option');
-        buttons.forEach(function(btn, idx) {
-          btn.classList.add('disabled');
-          if (idx === q.correct) { btn.classList.add('correct'); }
-          else if (idx === selected && idx !== q.correct) { btn.classList.add('incorrect'); }
-        });
-
-        if (selected === q.correct) { score++; }
-
-        quizScoreDisplay.textContent = 'Score: ' + score;
-
-        var isCorrect = selected === q.correct;
-        quizFeedback.classList.remove('hidden');
-        quizFeedback.className = 'mt-4 p-3 rounded-lg text-sm font-medium ' + (isCorrect ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-red-50 text-red-800 border border-red-200');
-        quizFeedback.innerHTML = (isCorrect ? '&#10003; Correct! ' : '&#10007; Not quite. ') + q.explanation;
-
-        currentQ++;
-        if (currentQ < quizQuestions.length) {
-          setTimeout(renderQuestion, 2200);
-        } else {
-          setTimeout(showResults, 2200);
-        }
-      }
-
-      function showResults() {
-        quizView.classList.add('hidden');
-        quizResult.classList.remove('hidden');
-        quizProgressBar.style.width = '100%';
-        resultEmoji.textContent = score === 3 ? '\uD83C\uDFC6' : score >= 2 ? '\uD83D\uDCA1' : '\uD83D\uDCDA';
-        document.getElementById('resultTitle').textContent = score === 3 ? 'Amazing! You\u2019re a Natural!' : score >= 2 ? 'Great Start!' : 'Keep Learning!';
-        document.getElementById('resultScore').textContent = score + '/' + quizQuestions.length;
-        document.getElementById('resultAdvice').textContent = score === 3 ? 'You already have a good start. The Fahm Arabic guide builds on exactly this kind of root recognition.' : 'Imagine how many more words you\u2019ll recognize after the full 10-day Fahm Arabic guide!';
-      }
-
-      function resetQuiz() {
-        currentQ = 0;
-        score = 0;
-        quizView.classList.remove('hidden');
-        quizResult.classList.add('hidden');
-        renderQuestion();
-      }
-
-      renderQuestion();
-      window.resetQuiz = resetQuiz;
 
       // ========== AFFILIATE URL PARAMETER HANDLING ==========
       function setupAffiliateLinks() {
