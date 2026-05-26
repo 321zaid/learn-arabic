@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahm Arabic — 10-Day Quranic Vocabulary Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --em-dark:#083D2E;--em:#0D5C46;--em-light:#1A7A5E;--em-faint:#E8F5F0;
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-faint:#FFF8E7;
+  --cream:#F8F6F1;--cream-dark:#F0EBE0;
+  --text:#1A1A1A;--text-mid:#4A4A4A;--text-light:#6B6B6B;
+  --white:#FFFFFF;--border:#E2DDD5;--red:#FF6B6B;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+.font-arabic{font-family:'Amiri',serif;direction:rtl;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0.35);}50%{box-shadow:0 0 0 10px rgba(201,168,76,0);}}
+@keyframes ripple{0%{transform:scale(0);opacity:0.5;}100%{transform:scale(3);opacity:0;}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+@keyframes glow{0%,100%{text-shadow:0 0 6px rgba(201,168,76,0.2);}50%{text-shadow:0 0 18px rgba(201,168,76,0.6);}}
+@keyframes waveBar{0%,100%{height:4px;}50%{height:18px;}}
+@keyframes checkBounce{0%{transform:scale(0) rotate(-10deg);}70%{transform:scale(1.15) rotate(3deg);}100%{transform:scale(1) rotate(0);}};
+@keyframes shimmer{0%{background-position:-400px 0;}100%{background-position:400px 0;}}
+@keyframes slideRight{from{transform:translateX(-8px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes scaleIn{from{transform:scale(0.92);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+/* ── GATE ── */
+#gate{position:fixed;inset:0;z-index:200;background:var(--em-dark);display:flex;align-items:center;justify-content:center;padding:1.5rem;transition:opacity 0.5s ease;}
+.gate-rings{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.gate-rings::before,.gate-rings::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,0.1);}
+.gate-rings::before{width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.gate-rings::after{width:750px;height:750px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.gate-box{position:relative;z-index:1;width:100%;max-width:400px;text-align:center;animation:fadeUp 0.6s ease;}
+.gate-logo{font-size:42px;font-weight:800;color:var(--white);letter-spacing:-1px;margin-bottom:4px;}
+.gate-logo span{color:var(--gold);}
+.gate-sub{font-size:13px;color:rgba(255,255,255,0.45);letter-spacing:0.06em;margin-bottom:36px;}
+.gate-card{background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:28px;backdrop-filter:blur(12px);}
+.gate-label{display:block;text-align:left;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:10px;}
+.gate-input{width:100%;padding:13px 15px;border-radius:10px;border:1px solid rgba(201,168,76,0.25);background:rgba(255,255,255,0.06);color:var(--white);font-size:16px;letter-spacing:0.12em;outline:none;transition:border-color 0.2s,box-shadow 0.2s;margin-bottom:14px;font-family:inherit;}
+.gate-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.12);}
+.gate-input::placeholder{color:rgba(255,255,255,0.2);letter-spacing:normal;}
+.gate-btn{width:100%;padding:14px;border-radius:10px;border:none;background:var(--gold);color:var(--em-dark);font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;font-family:inherit;}
+.gate-btn:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,0.3);}
+.gate-err{min-height:18px;font-size:12px;color:#ff9090;margin-top:10px;animation:fadeIn 0.25s ease;}
+.gate-hint{font-size:12px;color:rgba(255,255,255,0.28);margin-top:18px;line-height:1.7;}
+
+/* ── COURSE SHELL ── */
+#course{display:none;min-height:100vh;}
+
+/* ── HEADER ── */
+.hdr{background:var(--em-dark);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
+.hdr-inner{max-width:800px;margin:0 auto;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;}
+.hdr-brand{display:flex;align-items:center;gap:10px;}
+.hdr-logo{width:34px;height:34px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:var(--em-dark);animation:float 3s ease-in-out infinite;flex-shrink:0;}
+.hdr-title{font-size:15px;font-weight:700;color:var(--white);}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,0.38);}
+.prog-pill{background:rgba(201,168,76,0.14);border:1px solid rgba(201,168,76,0.35);color:var(--gold-light);font-size:12px;font-weight:600;padding:5px 13px;border-radius:20px;transition:all 0.3s;white-space:nowrap;}
+
+/* ── PROGRESS BAR ── */
+.prog-bar-wrap{background:var(--em-dark);padding:0 20px 12px;}
+.prog-bar-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;gap:10px;}
+.prog-track{flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--em-light),var(--gold));border-radius:2px;width:0%;transition:width 0.7s cubic-bezier(0.4,0,0.2,1);}
+.prog-label{font-size:11px;color:rgba(255,255,255,0.35);white-space:nowrap;}
+
+/* ── MAIN ── */
+.main{max-width:800px;margin:0 auto;padding:22px 16px 80px;}
+
+/* ── DAY GRID ── */
+.day-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:24px;}
+.day-btn{border:1.5px solid var(--border);background:var(--white);border-radius:10px;padding:11px 5px;cursor:pointer;text-align:center;position:relative;overflow:hidden;user-select:none;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;}
+.day-btn:not(.locked):not(.active):hover{border-color:var(--em-light);transform:translateY(-2px);box-shadow:0 4px 14px rgba(13,92,70,0.1);}
+.day-btn.active{border-color:var(--em);background:var(--em-faint);box-shadow:0 0 0 3px rgba(13,92,70,0.12);transform:translateY(-2px);}
+.day-btn.done{border-color:var(--gold);background:var(--gold-faint);}
+.day-btn.locked{opacity:0.38;cursor:not-allowed;}
+.day-num{font-size:10px;font-weight:700;color:var(--text-light);letter-spacing:0.05em;}
+.day-root{font-size:12px;font-weight:700;color:var(--text);margin-top:3px;}
+.day-badge{position:absolute;top:4px;right:4px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;}
+.day-badge.ck{background:var(--gold);color:var(--em-dark);}
+.day-badge.lk{color:var(--text-light);font-size:8px;}
+
+/* ── LESSON CARD ── */
+.lesson-card{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;animation:scaleIn 0.35s ease;}
+
+/* header band */
+.lhdr{background:var(--em-dark);padding:26px 26px 22px;position:relative;overflow:hidden;}
+.lhdr::before{content:'';position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(201,168,76,0.08);}
+.lhdr::after{content:'';position:absolute;left:-20px;bottom:-40px;width:140px;height:140px;border-radius:50%;border:1px solid rgba(201,168,76,0.06);}
+.lhdr-badge{display:inline-block;background:rgba(201,168,76,0.18);border:1px solid rgba(201,168,76,0.35);color:var(--gold-light);font-size:11px;font-weight:700;letter-spacing:0.08em;padding:4px 12px;border-radius:20px;margin-bottom:10px;text-transform:uppercase;}
+.lhdr-title{font-size:24px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:5px;}
+.lhdr-mission{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:14px;}
+.lhdr-arabic{font-size:22px;color:var(--gold);font-weight:700;font-family:'Amiri',serif;animation:glow 3s ease-in-out infinite;line-height:1.6;}
+
+/* body */
+.lbody{padding:24px;}
+
+/* section label */
+.sec{font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin:24px 0 10px;display:flex;align-items:center;gap:8px;}
+.sec:first-child{margin-top:0;}
+.sec::after{content:'';flex:1;height:1px;background:var(--cream-dark);}
+
+/* ── AUDIO PLAYER ── */
+.audio-wrap{background:var(--em-dark);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:opacity 0.2s;user-select:none;}
+.audio-wrap:hover{opacity:0.9;}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.2s,background 0.2s;position:relative;overflow:hidden;}
+.play-btn:hover{background:var(--gold-light);transform:scale(1.07);}
+.play-btn svg{width:16px;height:16px;fill:var(--em-dark);}
+.audio-info{flex:1;min-width:0;}
+.audio-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;}
+.audio-sub{font-size:11px;color:rgba(255,255,255,0.35);font-style:italic;}
+.audio-progress-track{height:3px;background:rgba(255,255,255,0.12);border-radius:2px;margin-top:7px;cursor:pointer;overflow:hidden;}
+.audio-progress-fill{height:100%;background:var(--gold);border-radius:2px;width:0%;transition:width 0.1s linear;}
+.wave-wrap{display:flex;align-items:center;gap:3px;flex-shrink:0;}
+.wbar{width:3px;background:rgba(255,255,255,0.2);border-radius:2px;height:4px;transition:background 0.2s;}
+.audio-wrap.playing .wbar{background:var(--gold-light);}
+.audio-wrap.playing .wbar:nth-child(1){animation:waveBar 0.7s ease infinite 0s;}
+.audio-wrap.playing .wbar:nth-child(2){animation:waveBar 0.7s ease infinite 0.12s;}
+.audio-wrap.playing .wbar:nth-child(3){animation:waveBar 0.7s ease infinite 0.24s;}
+.audio-wrap.playing .wbar:nth-child(4){animation:waveBar 0.7s ease infinite 0.06s;}
+.audio-wrap.playing .wbar:nth-child(5){animation:waveBar 0.7s ease infinite 0.18s;}
+.audio-wrap.playing .wbar:nth-child(6){animation:waveBar 0.7s ease infinite 0.3s;}
+.audio-wrap.playing .wbar:nth-child(7){animation:waveBar 0.7s ease infinite 0.09s;}
+
+/* ── FLIP CARDS ── */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;}
+.flip-card{height:105px;cursor:pointer;perspective:900px;user-select:none;}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;backface-visibility:hidden;border:1.5px solid var(--border);}
+.flip-front{background:var(--cream);}
+.flip-back{background:var(--em-dark);transform:rotateY(180deg);border-color:var(--em);}
+.fa{font-size:20px;color:var(--em-dark);font-weight:700;margin-bottom:5px;font-family:'Amiri',serif;line-height:1.3;}
+.fl{font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.06em;margin-bottom:3px;}
+.fhint{font-size:10px;color:var(--text-light);}
+.fm{font-size:12px;color:var(--white);font-weight:600;line-height:1.4;}
+.ft{font-size:10px;color:rgba(255,255,255,0.45);margin-top:4px;}
+.fshift{font-size:10px;color:rgba(255,255,255,0.3);margin-top:3px;line-height:1.3;}
+
+/* ── CONCEPT BOX ── */
+.concept{background:var(--em-faint);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:16px 18px;}
+.concept p{font-size:14px;line-height:1.8;color:var(--text-mid);}
+
+/* ── DECODE WIN ── */
+.decode{background:var(--gold-faint);border:1.5px solid rgba(201,168,76,0.35);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;}
+.decode::before{content:'⚡';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:36px;opacity:0.07;}
+.decode-label{font-size:10px;font-weight:800;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.decode-arabic{display:block;font-size:18px;color:var(--em-dark);font-weight:700;font-family:'Amiri',serif;text-align:center;background:rgba(13,92,70,0.06);border-radius:8px;padding:10px;margin-bottom:10px;line-height:1.6;}
+.decode-trans{font-size:12px;color:var(--text-light);text-align:center;margin-bottom:10px;font-style:italic;}
+.decode p{font-size:13px;line-height:1.7;color:var(--text-mid);}
+
+/* ── PRAYER ROWS ── */
+.prayer-rows{display:flex;flex-direction:column;gap:7px;}
+.prayer-row{display:flex;gap:10px;align-items:flex-start;background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:12px;transition:border-color 0.2s,background 0.2s;}
+.prayer-row:hover{border-color:var(--em-light);background:var(--em-faint);}
+.ptag{background:var(--em-dark);color:rgba(255,255,255,0.85);font-size:11px;font-weight:700;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px;letter-spacing:0.02em;}
+.ptext{font-size:13px;line-height:1.6;color:var(--text);}
+
+/* ── PRACTICE ── */
+.practice{background:var(--em-dark);border-radius:10px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;}
+.picon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.practice p{font-size:14px;line-height:1.75;color:rgba(255,255,255,0.88);}
+
+/* ── REFLECTION ── */
+.reflection{border:1.5px solid var(--border);border-radius:10px;padding:18px;}
+.rq{font-size:14px;font-weight:600;color:var(--em-dark);line-height:1.65;margin-bottom:12px;font-style:italic;}
+.rinput{width:100%;border:1px solid var(--border);border-radius:8px;padding:11px 13px;font-size:14px;line-height:1.6;color:var(--text);background:var(--cream);resize:none;min-height:80px;font-family:inherit;transition:border-color 0.2s,box-shadow 0.2s;outline:none;}
+.rinput:focus{border-color:var(--em-light);box-shadow:0 0 0 3px rgba(13,92,70,0.07);}
+.rsave{font-size:11px;color:var(--text-light);margin-top:6px;min-height:16px;transition:all 0.3s;}
+.rsave.ok{color:var(--em-light);}
+
+/* ── COMPLETE BTN ── */
+.action-row{margin-top:24px;padding-top:20px;border-top:1px solid var(--cream-dark);}
+.cbtn{width:100%;padding:15px;border-radius:10px;background:var(--em-dark);color:var(--gold-light);border:none;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:all 0.2s;position:relative;overflow:hidden;animation:pulse 2.5s ease-in-out infinite;font-family:inherit;}
+.cbtn:hover:not(:disabled){background:var(--em);transform:translateY(-2px);box-shadow:0 8px 24px rgba(13,92,70,0.28);animation:none;}
+.cbtn:disabled{opacity:0.5;cursor:not-allowed;animation:none;}
+.ripple-el{position:absolute;border-radius:50%;background:rgba(255,255,255,0.18);animation:ripple 0.6s ease forwards;pointer-events:none;}
+
+/* ── DONE BANNER ── */
+.done-banner{background:var(--em-faint);border:1.5px solid var(--em-light);border-radius:10px;padding:11px 15px;display:flex;align-items:center;gap:9px;margin-bottom:18px;animation:fadeIn 0.3s ease;}
+.done-icon{font-size:17px;animation:checkBounce 0.4s ease;}
+.done-txt{font-size:13px;color:var(--em-dark);font-weight:600;}
+
+/* ── LOCKED ── */
+.locked-scr{padding:56px 20px;text-align:center;animation:fadeIn 0.3s ease;}
+.locked-icon{font-size:44px;opacity:0.35;margin-bottom:14px;}
+.locked-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:7px;}
+.locked-sub{font-size:14px;color:var(--text-light);line-height:1.6;}
+
+/* ── COMPLETION ── */
+.completion{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;animation:fadeUp 0.5s ease;}
+.comp-hdr{background:var(--em-dark);padding:44px 28px;text-align:center;position:relative;overflow:hidden;}
+.comp-hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,rgba(201,168,76,0.07),transparent 65%);}
+.comp-ameen{display:block;font-size:44px;font-weight:800;color:var(--gold);margin-bottom:10px;animation:glow 2.5s ease-in-out infinite;font-family:'Amiri',serif;}
+.comp-title{font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.comp-sub{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;}
+.comp-body{padding:28px;}
+.comp-verse{background:var(--em-faint);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:18px;margin-bottom:22px;text-align:center;}
+.comp-arabic{font-size:18px;color:var(--em-dark);font-weight:700;font-family:'Amiri',serif;margin-bottom:7px;line-height:1.7;}
+.comp-trans{font-size:12px;color:var(--text-light);font-style:italic;}
+.comp-roots{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:22px;}
+.comp-root{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:9px 5px;text-align:center;}
+.cr-day{font-size:9px;color:var(--text-light);font-weight:700;letter-spacing:0.05em;}
+.cr-root{font-size:11px;font-weight:800;color:var(--gold);margin-top:2px;}
+.comp-msg{font-size:15px;line-height:1.8;color:var(--text-mid);text-align:center;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:480px){
+  .lhdr-title{font-size:20px;}
+  .lhdr-arabic{font-size:18px;}
+  .lbody{padding:18px 14px;}
+  .lhdr{padding:20px 18px 18px;}
+  .flip-grid{grid-template-columns:repeat(2,1fr);}
+  .comp-roots{grid-template-columns:repeat(5,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-rings"></div>
+  <div class="gate-box">
+    <div class="gate-logo">fahm<span>.</span></div>
+    <div class="gate-sub">10-Day Quranic Vocabulary Blueprint</div>
+    <div class="gate-card">
+      <label class="gate-label">Access Password</label>
+      <input class="gate-input" id="pw" type="password" placeholder="Enter your password" autocomplete="off">
+      <button class="gate-btn" onclick="tryPw()">Enter Course →</button>
+      <div class="gate-err" id="pw-err"></div>
+    </div>
+    <div class="gate-hint">Purchased but lost your password?<br>Email <strong style="color:rgba(255,255,255,0.45)">support@fahmarabic.com</strong></div>
+  </div>
+</div>
+
+<!-- COURSE -->
+<div id="course">
+  <div class="hdr">
+    <div class="hdr-inner">
+      <div class="hdr-brand">
+        <div class="hdr-logo">F</div>
+        <div>
+          <div class="hdr-title">Fahm Arabic</div>
+          <div class="hdr-sub">10-Day Blueprint</div>
+        </div>
+      </div>
+      <div class="prog-pill" id="prog-pill">Day 1 of 10</div>
+    </div>
+  </div>
+  <div class="prog-bar-wrap">
+    <div class="prog-bar-inner">
+      <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="prog-label" id="prog-label">0 / 10</div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="day-grid" id="day-grid"></div>
+    <div id="lesson-area"></div>
+  </div>
+</div>
+
+<script>
+// ── PASSWORD ──────────────────────────────────────────────────────────
+const PW = 'Quran@root7';
+function tryPw(){
+  const v = document.getElementById('pw').value.trim();
+  const err = document.getElementById('pw-err');
+  if(v === PW){
+    localStorage.setItem('fahm_auth','true');
+    const g = document.getElementById('gate');
+    g.style.opacity = '0';
+    setTimeout(()=>{ g.style.display='none'; document.getElementById('course').style.display='block'; initCourse(); }, 500);
+  } else {
+    err.textContent = 'Incorrect password. Check your Gumroad confirmation email.';
+    setTimeout(()=>{ err.textContent=''; }, 3000);
+  }
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Enter') tryPw(); });
+
+// ── COURSE DATA ───────────────────────────────────────────────────────
+const DAYS = [
+  { root:'S-L-M', title:'The Foundation of Peace', arabic:'أَسْلَمَ · إِسْلَام · مُسْلِم · سَلَام',
+    mission:'Decode the ultimate Quranic word for inner peace and discover how it connects to the final moment of your daily prayer.',
+    roots:[
+      {arabic:'أَسْلَمَ',l:'S-L-M',m:'He surrendered / submitted',t:'Aslama',s:'The action of giving up control to a higher authority.'},
+      {arabic:'إِسْلَام',l:'S-L-M',m:'Submission / Surrender',t:'Islam',s:'The actual state of being in complete submission.'},
+      {arabic:'مُسْلِم',l:'S-L-M',m:'One who submits',t:'Muslim',s:'The active doer executing the act of surrender.'},
+      {arabic:'سَلَام',l:'S-L-M',m:'Peace / Safety / Wholeness',t:'Salam',s:'The ultimate result of entering into surrender.'},
+    ],
+    concept:'The root S-L-M carries one unified meaning: wholeness, safety, and absolute submission. What is extraordinary is that Islam, Muslim, and Salam all emerge from the same three letters. The one who submits (Muslim) to Allah through Islam finds complete wholeness and peace (Salam). These are not separate ideas — they are one reality expressed through a single root.',
+    pA:'الـسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ', pT:"As-Salamu 'alaykum wa rahmatullah",
+    decode:"When you pronounce the closing of your prayer, your brain now links Salam back to S-L-M. You are not saying a generic word for peace — you are invoking the wholeness that comes from the act of total surrender (Islam) you just completed.",
+    prayers:[
+      {tag:'Tasleem (closing)',t:"Said right and left to end every prayer. You distribute the peace of S-L-M to everyone around you."},
+      {tag:"Daily greeting",t:"Every Assalamu Alaykum you say is a prayer of S-L-M — invoking wholeness and safety upon them."},
+      {tag:"Allah's name",t:"As-Salaam is one of the 99 names of Allah. He is the source of all peace — the root itself."},
+    ],
+    practice:"In your next prayer, as you make Tasleem — turning right and left — pause one second. You are not just ending a ritual. You are distributing the peace of S-L-M to every person around you. Feel the meaning of the word as it leaves your lips.",
+    reflection:"Islam, Muslim, and Salam all come from S-L-M. What does it tell you about your faith that 'submission' and 'peace' are the same root word — not two separate things?",
+    audio:'day_one.mp4', audioLabel:'Day 1 — S-L-M Root Words',
+  },
+  { root:'R-Ḥ-M', title:'The Core Atmosphere of God', arabic:'رَحْمَة · الرَّحْمَٰن · الرَّحِيم · أَرْحَم',
+    mission:'Unlock the deep, protective meaning behind the most repeated attribute of God in the entire Quran.',
+    roots:[
+      {arabic:'رَحْمَة',l:'R-Ḥ-M',m:'Mercy / Compassion',t:'Rahmah',s:'The abstract quality of grace and enveloping protection.'},
+      {arabic:'الرَّحْمَٰن',l:'R-Ḥ-M',m:'The All-Merciful (by nature)',t:'Ar-Rahman',s:'Intense, overwhelming mercy covering all creation right now.'},
+      {arabic:'الرَّحِيم',l:'R-Ḥ-M',m:'The Ever-Merciful (in action)',t:'Ar-Rahim',s:'Targeted, continuous mercy flowing to the believer.'},
+      {arabic:'أَرْحَم',l:'R-Ḥ-M',m:'Most Merciful',t:'Arham',s:'The comparative — the absolute peak of mercy.'},
+    ],
+    concept:"The foundational image of this root is the Rahm — the womb. A mother's womb is the ultimate safe space: extreme protection, total nurturing, unconditional love. When Allah names Himself Ar-Rahman, He draws on this primal image of enveloping, total care. Ar-Rahman is His mercy covering all creation. Ar-Raheem is the same mercy, intensified and directed specifically at the believer who turns to Him.",
+    pA:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', pT:'Bismillahir-Rahmanir-Rahim',
+    decode:"When you hear Ar-Rahman and Ar-Rahim in prayer, you now bypass the flat English word 'merciful.' You visualise a protective, nurturing field of grace — like a womb safeguarding a child — enveloping you completely in that exact moment.",
+    prayers:[
+      {tag:'Al-Fatiha (every rakat)',t:"'Bismillahir-Rahmanir-Rahim' — you recite this root twice before a single other word of prayer."},
+      {tag:'Al-Fatiha, Ayah 3',t:"'Ar-Rahmani ar-Raheem' appears again as Allah's names — so this root sounds four times in the opening surah alone."},
+      {tag:'Closing Tasleem',t:"'Wa rahmatullah' — you close prayer with S-L-M (Day 1) AND R-Ḥ-M together in one farewell."},
+    ],
+    practice:"In your next prayer, count how many times the R-Ḥ-M root sounds during Al-Fatiha alone. The answer is four. Four waves of mercy before you finish the opening surah. Notice each one.",
+    reflection:"Ar-Rahman (wide mercy for all creation) and Ar-Raheem (intimate mercy for the believer) — which do you feel you need most right now? There is no wrong answer.",
+    audio:'day_two.mp4', audioLabel:'Day 2 — R-Ḥ-M Root Words',
+  },
+  { root:'Ḥ-M-D', title:'The Gratitude Matrix', arabic:'حَمْد · حَامِد · مَحْمُود · مُحَمَّد',
+    mission:"Discover the precise linguistic difference between simple 'thanks' and the ultimate formula of divine praise.",
+    roots:[
+      {arabic:'حَمْد',l:'Ḥ-M-D',m:'Praise / Gratitude',t:'Hamd',s:'The combination of loving praise and deep thankfulness.'},
+      {arabic:'حَامِد',l:'Ḥ-M-D',m:'One who praises',t:'Hamid',s:'The active person expressing gratitude.'},
+      {arabic:'مَحْمُود',l:'Ḥ-M-D',m:'Praiseworthy / Honoured',t:'Mahmud',s:'The one who deserves to be highly valued.'},
+      {arabic:'مُحَمَّد',l:'Ḥ-M-D',m:'The Highly Praised One',t:'Muhammad',s:"Continuous, multi-layered intensification of praise — the Prophet's name."},
+    ],
+    concept:"Al-Hamd is not the same as Shukr (thanks). Shukr is gratitude in response to something received. Hamd is praise based on who the praised one is — regardless of what they have given you. When you say Alhamdulillah, you praise Allah not just for what He gave you today, but because of who He inherently is. The opening of Al-Fatiha states this immediately: all Hamd — every molecule of praise in existence — belongs to Allah.",
+    pA:"سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ", pT:"Sami'allahu liman hamidah",
+    decode:"The moment the Imam says 'Sami'allahu liman hamidah,' you decode it instantly: 'God has absolutely heard the one who actively praised Him.' You follow with 'Rabbana wa lakal-hamd' — Our Master, all conscious praise belongs exclusively to You.",
+    prayers:[
+      {tag:'Al-Fatiha, Ayah 2',t:"'Al-hamdu lillahi Rabbil-'alamin' — the second verse of every prayer. All praise belongs to Allah, Sustainer of all worlds."},
+      {tag:"Rising from Ruku'",t:"'Sami'allahu liman hamidah' — Allah has heard whoever praised Him. This root fires every time you rise from bowing."},
+      {tag:"Prophet's name",t:"Muhammad and Ahmad are both from Ḥ-M-D. Every time you say the Prophet's name (SAW), you invoke this root."},
+    ],
+    practice:"When you say 'Al-hamdu lillahi' in Al-Fatiha today, pause mentally on 'Al.' The definite article means ALL praise — not some, not yours alone, but every particle of gratitude that has ever existed. Say it with that weight.",
+    reflection:"Hamd is praise based on who Allah is, not what He gave you. Can you praise Him right now, before thinking of a single blessing He gave you this week? What does that feel like?",
+    audio:'day_three.mp4', audioLabel:'Day 3 — Ḥ-M-D Root Words',
+  },
+  { root:'R-B-B', title:'The Anchor of Authority', arabic:'رَبّ · رَبَّنَا · تَرْبِيَة',
+    mission:"Transition your understanding from a static title ('Lord') to an active force that sustains your entire universe.",
+    roots:[
+      {arabic:'رَبّ',l:'R-B-B',m:'Master / Sustainer / Nurturer',t:'Rabb',s:'The one who owns, fosters, corrects, and nurtures to maturity.'},
+      {arabic:'رَبَّنَا',l:'R-B-B',m:'Our Master / Our Sustainer',t:'Rabbana',s:'The intimate, collective plea for nurturing care.'},
+      {arabic:'تَرْبِيَة',l:'R-B-B',m:'Upbringing / Nurturing',t:'Tarbiyah',s:'Raising a child to their full potential — same root.'},
+    ],
+    concept:"Rabb does not mean a distant king who issues commands. The root carries the image of someone who takes a thing from its earliest, most incomplete state and carefully nurtures it to full maturity. A parent is a Rabb to their child through Tarbiyah. When Allah is called Rabbil-Alamin, He is the active, personal Guide who is constantly managing, adjusting, and growing your soul through every experience you face.",
+    pA:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", pT:"Al-hamdulillahi Rabbil-'alamin",
+    decode:"When Rabb hits your ears during recitation, your focus now locks onto this: Allah is not a detached ruler. He is the active Rabb — constantly managing, fixing, and growing your soul through every situation you face right now.",
+    prayers:[
+      {tag:'Al-Fatiha, Ayah 2',t:"'Rabbil-'alamin' — Sustainer of all the worlds. Said in the second verse of every prayer."},
+      {tag:'Ruku',t:"'Subhana Rabbi al-Adheem' — Glory to my Tremendous Rabb. Said at least 3 times in every bowing."},
+      {tag:'Sujood',t:"'Subhana Rabbi al-A'la' — Glory to my Most High Rabb. Said in every prostration."},
+      {tag:'Between two Sujoods',t:"'Rabbighfir li' — My Rabb, forgive me. You call on Him by this name in the most humble position."},
+    ],
+    practice:"Count how many times you say 'Rabb' in a single 4-rakat prayer. The number is over 20. Each time, remind yourself: this is not a title. This is the One who is actively sustaining you in this exact moment.",
+    reflection:"Tarbiyah (nurturing/parenting) and Rabb share the same root. What does it mean that the same word describes how a parent raises a child and how Allah relates to you?",
+    audio:'day_four.mp4', audioLabel:'Day 4 — R-B-B Root Words',
+  },
+  { root:'M-L-K', title:'The Sovereign Power', arabic:'مَلِك · مَالِك · مُلْك · مَلَائِكَة',
+    mission:'Internalise the absolute ownership of time and space during prayer by isolating the root of true royalty.',
+    roots:[
+      {arabic:'مَلِك',l:'M-L-K',m:'King / Ruler',t:'Malik',s:'The one who possesses political authority and commands actions.'},
+      {arabic:'مَالِك',l:'M-L-K',m:'Owner / Master',t:'Maalik',s:'The one with direct physical possession over property.'},
+      {arabic:'مُلْك',l:'M-L-K',m:'Kingdom / Dominion',t:'Mulk',s:'The actual territory or realm under full control.'},
+      {arabic:'مَلَائِكَة',l:'M-L-K',m:'Angels',t:"Mala'ikah",s:"The cosmic agents sent to execute the King's exact orders."},
+    ],
+    concept:"In Al-Fatiha, some recite Maaliki (Owner) while others recite Maliki (King) — both valid, both from M-L-K. Malik holds authority, Maalik holds ownership. On the Day of Judgement, no human will hold either. No authority, no property, no voice. Everything returns to its origin. That Mala'ikah (angels) shares this root reveals that even angels are agents executing the commands of the one true M-L-K.",
+    pA:"مَالِكِ يَوْمِ الدِّينِ", pT:"Maaliki Yawmid-Din",
+    decode:"When you hear 'Maaliki,' your brain now separates it from Malik (King). Allah is the absolute Owner (Maalik) of the Day of Judgement — and on that day, no human will own a single thing, not even their own voice.",
+    prayers:[
+      {tag:'Al-Fatiha, Ayah 4',t:"'Maaliki Yawmid-Din' — Owner of the Day of Judgement. The fourth verse places you before total sovereignty."},
+      {tag:'Surah Al-Mulk',t:"The name of Surah 67 is Al-Mulk — The Dominion. Reading it before sleep is Sunnah."},
+    ],
+    practice:"When you reach verse 4 of Al-Fatiha today — 'Maaliki Yawmid-Din' — hold the thought for one extra breath. Everything you think you own: your time, your body, your plans. On that Day, what returns to its owner?",
+    reflection:"Angels (Mala'ikah) and King (Malik) come from the same root M-L-K. Angels are agents of divine command. Does thinking of angels as 'executors of the King's orders' change how you understand them?",
+    audio:'day_five.mp4', audioLabel:'Day 5 — M-L-K Root Words',
+  },
+  { root:'A-B-D', title:'The True Identity of Service', arabic:'عَبْد · عِبَاد · عِبَادَة · نَعْبُدُ',
+    mission:'Shift your perspective from forced slavery to high-status alignment by unlocking the root of true worship.',
+    roots:[
+      {arabic:'عَبْد',l:'A-B-D',m:'Servant / Bondsperson',t:"'Abd",s:'The individual who aligns their will with the Master.'},
+      {arabic:'عِبَاد',l:'A-B-D',m:'Servants (Honoured)',t:"'Ibad",s:'A Quranic plural reserved for highly valued believers.'},
+      {arabic:'عِبَادَة',l:'A-B-D',m:'Worship / Active service',t:"'Ibadah",s:'The practical steps taken to smooth the path toward God.'},
+      {arabic:'نَعْبُدُ',l:'A-B-D',m:'We worship / We serve',t:"Na'budu",s:'Active present-tense declaration of a group in service.'},
+    ],
+    concept:"The foundational image of A-B-D is a road being smoothed — levelled and made effortless to walk on. Applied spiritually, worship (Ibadah) is the act of smoothing your inner path toward Allah until the journey becomes natural and free. This is why Abd Allah — servant of Allah — is the most honourable title in Islam. It is not degradation. It is the highest alignment: a soul whose path to its Creator has been completely cleared.",
+    pA:"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", pT:"Iyyaka na'budu wa iyyaka nasta'in",
+    decode:"The moment you pronounce Na'budu, you map it to A-B-D. You are looking at Allah saying: 'To You alone we level our paths, to You alone we give our ultimate loving service' — dropping all attachment to worldly distractions.",
+    prayers:[
+      {tag:'Al-Fatiha, Ayah 5',t:"'Iyyaka na'budu' — To You alone we direct our worship. 'Iyyaka' (You alone) comes BEFORE the verb — the word order is the theology."},
+      {tag:'Tashahhud',t:"'Muhammadan 'abduhu wa rasuluh' — Abd appears as the Prophet's highest honour: His servant and messenger."},
+    ],
+    practice:"In Al-Fatiha today, notice the word order: 'Iyyaka na'budu' puts YOU ALONE before the verb. In Arabic this is emphasis — it means 'no one but You.' Say it with the weight of that exclusivity. It is a declaration, not a recitation.",
+    reflection:"The most honoured title in Islam is Abd Allah — servant of Allah. In most cultures, being called someone's servant is an insult. Why is it the highest title here? What has to change in your understanding of who Allah is for that to make sense?",
+    audio:'day_six.mp4', audioLabel:'Day 6 — A-B-D Root Words',
+  },
+  { root:'H-D-Y', title:'The Divine Navigation System', arabic:'هُدَى · ٱهْدِنَا · هَادٍ · هَدِيَّة',
+    mission:'Learn to identify the targeted linguistic call for a straight navigational route in a chaotic world.',
+    roots:[
+      {arabic:'هُدَى',l:'H-D-Y',m:'Guidance / Direction',t:'Huda',s:'Absolute clarity and strategic map-routing.'},
+      {arabic:'ٱهْدِنَا',l:'H-D-Y',m:'Guide us! (imperative)',t:'Ihdina',s:'An urgent, active request for instant direction — plural.'},
+      {arabic:'هَادٍ',l:'H-D-Y',m:'A Guide',t:'Hadi',s:'The active agent who points out the safest path.'},
+      {arabic:'هَدِيَّة',l:'H-D-Y',m:'A gift',t:'Hadiyyah',s:'True guidance is the ultimate gift of love — same root.'},
+    ],
+    concept:"The root H-D-Y carries a gentle, careful energy — to guide something delicately, to present a gift that shows the way. The word Hadiyyah (gift) comes from this root. This tells you something about how Allah positions guidance: it is not a command barked at you — it is a gift offered to you. When you say Ihdina, you make a plural request: guide US — yourself and the entire ummah you pray alongside.",
+    pA:"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", pT:"Ihdina-siratal-mustaqim",
+    decode:"The word Ihdina now flashes on your mental dashboard. You are not reading text — you are actively requesting a live navigation system. Asking your Master to gently guide your steps right onto the straight path so you don't veer offline.",
+    prayers:[
+      {tag:'Al-Fatiha, Ayah 6',t:"'Ihdina-siratal-mustaqim' — Guide US to the straight path. The central dua of every prayer. Said minimum 17 times every day."},
+      {tag:'The plural',t:"'Ihdina' means 'guide us' — not just me. Every time you say it, you pray for guidance on behalf of every Muslim you know."},
+    ],
+    practice:"You say 'Ihdina' at least 17 times per day across 5 prayers. That is 17 GPS recalibrations. Today, during each one, let the word land as a request — not a recitation. Who or what do you most need guidance about right now?",
+    reflection:"Guidance (Huda) and gift (Hadiyyah) share the same root H-D-Y. Allah frames the guidance He gives as a gift of love. How does receiving guidance change when you think of it as a gift rather than a rule?",
+    audio:'day_seven.mp4', audioLabel:'Day 7 — H-D-Y Root Words',
+  },
+  { root:'K-B-R', title:'The Greatness Shift', arabic:'كَبِير · أَكْبَر · تَكْبِير · اسْتَكْبَرَ',
+    mission:'Decode the physical shift in posture during prayer by understanding the root word for unmatched magnitude.',
+    roots:[
+      {arabic:'كَبِير',l:'K-B-R',m:'Large / Great / Grand',t:'Kabir',s:'The structural property of being vast or senior.'},
+      {arabic:'أَكْبَر',l:'K-B-R',m:'Greater / Vastly Superior',t:'Akbar',s:'The comparative — nothing can match its size or rank.'},
+      {arabic:'تَكْبِير',l:'K-B-R',m:'To declare greatness',t:'Takbir',s:'The vocalisation action of magnifying something.'},
+      {arabic:'اسْتَكْبَرَ',l:'K-B-R',m:'He was arrogant',t:'Istakbara',s:'Negative: falsely claiming greatness that does not belong to you.'},
+    ],
+    concept:"Akbar is the comparative form: greater than. But there is nothing to compare Allah to. The phrase 'Allahu Akbar' is not a comparison; it is a declaration that magnitude itself reaches its absolute limit and stops. Every time you say it to shift posture in prayer — standing to bowing, bowing to prostration — it functions as a cognitive reset: whatever was in your head a second ago is smaller than what you are moving toward.",
+    pA:"اللَّهُ أَكْبَرُ", pT:"Allahu Akbar",
+    decode:"Every time you utter Akbar, you map it to K-B-R. Your focus resets: 'Allah is infinitely greater than whatever stress, worry, or task was in my head two seconds ago.' It is a cognitive circuit breaker built into every prayer movement.",
+    prayers:[
+      {tag:'Every posture change',t:"'Allahu Akbar' is said at every single posture transition in Salah — it moves you from standing to bowing to prostrating."},
+      {tag:'Opening Takbir',t:"The prayer begins with 'Allahu Akbar' — the Takbiratul Ihram. It closes the world out and opens the conversation with Allah."},
+      {tag:'Adhan',t:"'Allahu Akbar' opens the call to prayer four times — the announcement before the announcement."},
+    ],
+    practice:"In your next prayer, every time you say 'Allahu Akbar' to change posture, name in your mind one thing that is smaller than Allah in that moment. A worry. A task. A fear. Then bow or prostrate. That's the Takbir functioning as designed.",
+    reflection:"Istakbara (arrogance) comes from the same root as Akbar — it means to falsely claim greatness that does not belong to you. Knowing that only Allah is truly Akbar, what does arrogance look like now?",
+    audio:'day_eight.mp4', audioLabel:'Day 8 — K-B-R Root Words',
+  },
+  { root:'G-F-R', title:'The Protective Shield', arabic:'غَفُور · مَغْفِرَة · أَسْتَغْفِرُ اللَّهَ · مِغْفَر',
+    mission:'Transform your concept of forgiveness from a simple erasure to a physical, protective tactical armour.',
+    roots:[
+      {arabic:'غَفُور',l:'G-F-R',m:'Extremely Forgiving',t:'Ghafur',s:'The one who covers up flaws over and over, out of grace.'},
+      {arabic:'مَغْفِرَة',l:'G-F-R',m:'Forgiveness / Protection',t:'Maghfirah',s:'The physical protective blanket that hides spiritual vulnerabilities.'},
+      {arabic:'أَسْتَغْفِرُ اللَّهَ',l:'G-F-R',m:'I seek protection from Allah',t:'Astaghfirullah',s:'The active request for God to pull a shield over your errors.'},
+      {arabic:'مِغْفَر',l:'G-F-R',m:'Helmet / Protective shield',t:'Mighfar',s:'The literal object the root is based on — armour for the head.'},
+    ],
+    concept:"The foundational image of G-F-R is a Mighfar — a battle helmet worn to protect the head from incoming strikes. When you say Astaghfirullah, the classical meaning is not 'I apologise.' It is 'I am requesting that Allah pull the protective cover over my mistakes, shield me from their consequences, and conceal my flaws so they cannot damage my heart.' Forgiveness in this root is not erasure. It is armour.",
+    pA:"رَبِّ اغْفِرْ لِي", pT:"Rabbigh-fir li",
+    decode:"When you say 'Ighfir li,' your mind no longer sees a generic pardon. You see your soul asking the Master: 'My Master, throw protective armour over my mistakes, shield me from their toxic consequences, and conceal my flaws before they damage my heart.'",
+    prayers:[
+      {tag:'Between two Sujoods',t:"'Rabbigh-fir li' — My Rabb, shield/forgive me. Said in every rakat, in the most humble position your body can take."},
+      {tag:'After Salah',t:"'Astaghfirullah' x3 — the first dhikr after completing the prayer. Seeking the protective cover immediately after."},
+    ],
+    practice:"In today's prayer, during the sitting between your two Sujoods, say 'Rabbigh-fir li' slowly and with full meaning. Rabb — my Sustainer. Ighfir — place the shield. Li — over me. Three words. A complete request for armour. You know every word now.",
+    reflection:"Forgiveness in this root is not about erasing the mistake — it is about covering it so it cannot cause more damage. Does thinking of forgiveness as armour change what you feel when you seek it?",
+    audio:'day_nine.mp4', audioLabel:'Day 9 — G-F-R Root Words',
+  },
+  { root:'S-M-A', title:'The Ultimate Acoustic Loop', arabic:'سَمِيع · اسْتَمَعَ · سَمِعْنَا',
+    mission:'Connect your vocal prayer to an immediate, live response by decoding the root of divine listening.',
+    roots:[
+      {arabic:'سَمِيع',l:'S-M-A',m:'The All-Hearing',t:"Sami'",s:'The active entity who intercepts and processes all frequencies.'},
+      {arabic:'اسْتَمَعَ',l:'S-M-A',m:'He listened intently',t:"Istama'a",s:'Moving from passive hearing to deep, focused absorption.'},
+      {arabic:'سَمِعْنَا',l:'S-M-A',m:'We heard / We understood',t:"Sami'na",s:'The declaration of absolute comprehension by human listeners.'},
+    ],
+    concept:"S-M-A is not just the root of hearing — it is the root of hearing that leads to understanding and action. Istama'a (to listen intently) is a deeper level of Sami'a (to hear). Allah's name As-Sami' does not just mean He detects sound waves. It means He hears, comprehends, and responds. Your prayer is not going into silence.",
+    pA:"سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ", pT:"Sami'allahu liman hamidah",
+    decode:"This is your final root — and it closes the loop. You learned to praise (Ḥ-M-D, Day 3). Now you know Allah actively hears that praise (S-M-A). When you rise from Ruku today, you decode both roots in one phrase: 'Allah has heard the one who praised Him.' Your prayer is heard.",
+    prayers:[
+      {tag:"Rising from Ruku'",t:"'Sami'allahu liman hamidah' — Allah has heard (S-M-A) the one who praised Him (Ḥ-M-D from Day 3). Two roots you know, in one phrase."},
+      {tag:"Allah's name",t:"As-Sami' is one of the 99 names of Allah. He is not just capable of hearing — hearing is part of His nature."},
+      {tag:'The acoustic loop',t:"You praise (Ḥ-M-D) → Allah hears (S-M-A) → you confirm He heard → the loop is complete. This is the structure of Salah."},
+    ],
+    practice:"In your next prayer, when you rise from Ruku and hear 'Sami'allahu liman hamidah,' respond knowing: you praised (Day 3), He heard (today). Say 'Rabbana wa lakal-hamd' knowing the Sami' — the All-Hearing — received every word.",
+    reflection:"You have now completed 10 roots. Your prayer began with S-L-M (peace through surrender) and ends with S-M-A (Allah hears you). What has changed in how your prayer feels — even slightly — after these 10 days?",
+    audio:'day_ten.mp4', audioLabel:'Day 10 — S-M-A Root Words',
+  },
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────
+let state = { cur:0, done:new Set(), ref:{} };
+function save(){ localStorage.setItem('fahm_done',JSON.stringify([...state.done])); localStorage.setItem('fahm_cur',state.cur); localStorage.setItem('fahm_ref',JSON.stringify(state.ref)); }
+function load(){ try{ const d=localStorage.getItem('fahm_done'); if(d) state.done=new Set(JSON.parse(d)); const c=localStorage.getItem('fahm_cur'); if(c!==null) state.cur=parseInt(c); const r=localStorage.getItem('fahm_ref'); if(r) state.ref=JSON.parse(r); }catch(e){} }
+function unlocked(){ return state.done.size===0?1:Math.min(state.done.size+1,10); }
+
+// ── AUDIO ─────────────────────────────────────────────────────────────
+let activeAudio=null, activeWrap=null;
+function toggleAudio(dayIdx, src){
+  const wrap = document.getElementById('aw-'+dayIdx);
+  if(!wrap) return;
+  const playing = wrap.classList.contains('playing');
+  // stop any active
+  if(activeAudio){ activeAudio.pause(); activeAudio.currentTime=0; }
+  if(activeWrap){ activeWrap.classList.remove('playing'); setPlayIcon(activeWrap, false); }
+  if(playing){ activeAudio=null; activeWrap=null; return; }
+  if(!src){ return; } // no audio file yet
+  const audio = new Audio(src);
+  activeAudio=audio; activeWrap=wrap;
+  wrap.classList.add('playing');
+  setPlayIcon(wrap,true);
+  audio.play().catch(()=>{});
+  audio.addEventListener('timeupdate',()=>{
+    const fill=wrap.querySelector('.audio-progress-fill');
+    if(fill&&audio.duration) fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  });
+  audio.addEventListener('ended',()=>{
+    wrap.classList.remove('playing');
+    setPlayIcon(wrap,false);
+    const fill=wrap.querySelector('.audio-progress-fill');
+    if(fill) fill.style.width='0%';
+    activeAudio=null; activeWrap=null;
+  });
+  // seek on progress click
+  const track=wrap.querySelector('.audio-progress-track');
+  if(track){ track.onclick=(e)=>{ const r=track.getBoundingClientRect(); audio.currentTime=(e.clientX-r.left)/r.width*audio.duration; }; }
+}
+function setPlayIcon(wrap, playing){
+  const svg=wrap.querySelector('.play-btn svg');
+  if(!svg) return;
+  svg.innerHTML = playing
+    ? '<rect x="5" y="4" width="4" height="16"/><rect x="13" y="4" width="4" height="16"/>'
+    : '<polygon points="6,4 18,12 6,20"/>';
+}
+
+// ── FLIP ──────────────────────────────────────────────────────────────
+function flip(el){ el.classList.toggle('flipped'); }
+
+// ── RIPPLE ────────────────────────────────────────────────────────────
+function ripple(btn){
+  const r=document.createElement('span');
+  const s=Math.max(btn.offsetWidth,btn.offsetHeight)*2.5;
+  r.className='ripple-el';
+  r.style.cssText=`width:${s}px;height:${s}px;left:${btn.offsetWidth/2-s/2}px;top:${btn.offsetHeight/2-s/2}px;`;
+  btn.appendChild(r);
+  setTimeout(()=>r.remove(),700);
+}
+
+// ── REFLECTION SAVE ───────────────────────────────────────────────────
+const rTimers={};
+function saveRef(i,v){
+  state.ref[i]=v;
+  clearTimeout(rTimers[i]);
+  rTimers[i]=setTimeout(()=>{
+    save();
+    const ind=document.getElementById('rsave-'+i);
+    if(ind){ind.textContent='✓ Saved';ind.classList.add('ok');}
+    setTimeout(()=>{ const ind=document.getElementById('rsave-'+i); if(ind){ind.textContent='';ind.classList.remove('ok');} },2000);
+  },800);
+}
+
+// ── MARK COMPLETE ─────────────────────────────────────────────────────
+function markDone(i,btn){
+  ripple(btn);
+  btn.disabled=true; btn.style.animation='none'; btn.textContent='✓ Day Completed';
+  state.done.add(i);
+  if(i===9){ save(); setTimeout(showCompletion,600); return; }
+  state.cur=i+1; save();
+  setTimeout(()=>{ renderGrid(); renderLesson(); document.getElementById('lesson-area').scrollIntoView({behavior:'smooth',block:'start'}); },500);
+}
+
+// ── RENDER GRID ───────────────────────────────────────────────────────
+function renderGrid(){
+  const ul=unlocked(), grid=document.getElementById('day-grid');
+  grid.innerHTML='';
+  DAYS.forEach((d,i)=>{
+    const isDone=state.done.has(i), isLocked=i>=ul, isActive=i===state.cur;
+    const btn=document.createElement('div');
+    btn.className='day-btn'+(isDone?' done':'')+(isLocked?' locked':'')+(isActive?' active':'');
+    btn.innerHTML=`<div class="day-num">DAY ${i+1}</div><div class="day-root">${d.root}</div>${isDone?'<div class="day-badge ck">✓</div>':''}${isLocked&&!isDone?'<div class="day-badge lk">🔒</div>':''}`;
+    if(!isLocked) btn.addEventListener('click',()=>{ ripple(btn); state.cur=i; save(); renderGrid(); renderLesson(); document.getElementById('lesson-area').scrollIntoView({behavior:'smooth',block:'start'}); });
+    grid.appendChild(btn);
+  });
+  const pct=state.done.size/10*100;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').textContent=`${state.done.size} / 10`;
+  const pill=document.getElementById('prog-pill');
+  pill.textContent=state.done.size===10?'✓ Complete!':`Day ${state.cur+1} of 10`;
+}
+
+// ── RENDER LESSON ─────────────────────────────────────────────────────
+function renderLesson(){
+  const area=document.getElementById('lesson-area'), i=state.cur, ul=unlocked(), d=DAYS[i], isDone=state.done.has(i);
+  if(i>=ul){
+    area.innerHTML=`<div class="lesson-card"><div class="locked-scr"><div class="locked-icon">🔒</div><div class="locked-title">Day ${i+1} is locked</div><div class="locked-sub">Complete Day ${i} first to unlock this lesson.<br>Each day builds on the one before it.</div></div></div>`;
+    return;
+  }
+  const cards=d.roots.map(r=>`<div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="fa font-arabic">${r.arabic}</div><div class="fl">${r.l}</div><div class="fhint">Tap to reveal</div></div><div class="flip-back"><div class="fm">${r.m}</div><div class="ft">${r.t}</div><div class="fshift">${r.s}</div></div></div></div>`).join('');
+  const prayers=d.prayers.map(p=>`<div class="prayer-row"><span class="ptag">${p.tag}</span><span class="ptext">${p.t}</span></div>`).join('');
+  const hasAudio=!!d.audio;
+  area.innerHTML=`
+<div class="lesson-card">
+  ${isDone?`<div class="done-banner" style="margin:14px 14px -2px"><span class="done-icon">✓</span><span class="done-txt">Day ${i+1} completed — revisit anytime.</span></div>`:''}
+  <div class="lhdr">
+    <div class="lhdr-badge">Day ${i+1} · Root: ${d.root}</div>
+    <div class="lhdr-title">${d.title}</div>
+    <div class="lhdr-mission">${d.mission}</div>
+    <div class="lhdr-arabic font-arabic">${d.arabic}</div>
+  </div>
+  <div class="lbody">
+    <div class="sec">🎧 Pronunciation Audio</div>
+    <div class="audio-wrap${hasAudio?' has-audio':''}" id="aw-${i}" onclick="toggleAudio(${i},'${d.audio||''}')">
+      <button class="play-btn" aria-label="${hasAudio?'Play audio':'No audio yet'}">
+        <svg viewBox="0 0 24 24"><polygon points="6,4 18,12 6,20"/></svg>
+      </button>
+      <div class="audio-info">
+        <div class="audio-title">${d.audioLabel}</div>
+        <div class="audio-sub">${hasAudio?'Click to play':'Click to play'}</div>
+        <div class="audio-progress-track"><div class="audio-progress-fill"></div></div>
+      </div>
+      <div class="wave-wrap">${Array(7).fill('<div class="wbar"></div>').join('')}</div>
+    </div>
+
+    <div class="sec">📖 Root Words — Tap each card to reveal meaning</div>
+    <div class="flip-grid">${cards}</div>
+
+    <div class="sec">💡 The Concept</div>
+    <div class="concept"><p>${d.concept}</p></div>
+
+    <div class="sec">⚡ Instant Decoding Win</div>
+    <div class="decode">
+      <div class="decode-label">Hear this in your next prayer:</div>
+      <span class="decode-arabic font-arabic">${d.pA}</span>
+      <div class="decode-trans">${d.pT}</div>
+      <p>${d.decode}</p>
+    </div>
+
+    <div class="sec">🕌 Where You Hear It in Prayer</div>
+    <div class="prayer-rows">${prayers}</div>
+
+    <div class="sec">🎯 Today's Practice</div>
+    <div class="practice"><div class="picon">▶</div><p>${d.practice}</p></div>
+
+    <div class="sec">✍️ Reflection</div>
+    <div class="reflection">
+      <div class="rq">"${d.reflection}"</div>
+      <textarea class="rinput" id="ri-${i}" placeholder="Write your thoughts — saved automatically..." rows="4" oninput="saveRef(${i},this.value)">${state.ref[i]||''}</textarea>
+      <div class="rsave" id="rsave-${i}"></div>
+    </div>
+
+    <div class="action-row">
+      <button class="cbtn" id="cbtn-${i}" onclick="markDone(${i},this)" ${isDone?'disabled':''}>
+        ${isDone?'✓ Day Completed':i===9?'✓ Complete the Blueprint →':`Unlock Day ${i+2} →`}
+      </button>
+    </div>
+  </div>
+</div>`;
+}
+
+// ── COMPLETION ────────────────────────────────────────────────────────
+function showCompletion(){
+  const pills=DAYS.map((d,i)=>`<div class="comp-root" style="animation:checkBounce 0.3s ease ${i*0.05}s both"><div class="cr-day">DAY ${i+1}</div><div class="cr-root">${d.root}</div></div>`).join('');
+  document.getElementById('lesson-area').innerHTML=`
+<div class="completion">
+  <div class="comp-hdr">
+    <span class="comp-ameen font-arabic">آمين</span>
+    <div class="comp-title">You have completed the 10-Day Fahm Blueprint.</div>
+    <div class="comp-sub">These 10 roots will stay with you for life.<br>Every Salah you pray from now, these words will surface — not as sounds, but as meaning.</div>
+  </div>
+  <div class="comp-body">
+    <div class="comp-verse">
+      <div class="comp-arabic font-arabic">الَّذِينَ يَذْكُرُونَ اللَّهَ قِيَامًا وَقُعُودًا وَعَلَىٰ جُنُوبِهِمْ</div>
+      <div class="comp-trans">"Those who remember Allah while standing, sitting, and on their sides." — Surah Aal Imran, 3:191</div>
+    </div>
+    <div style="font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;">Your 10 Roots</div>
+    <div class="comp-roots">${pills}</div>
+    <div class="comp-msg">May Allah accept your prayers and grant you understanding.<br><br><strong style="color:var(--em-dark);font-size:20px;font-family:'Amiri',serif;">Ameen.</strong></div>
+  </div>
+</div>`;
+  document.getElementById('prog-fill').style.width='100%';
+  document.getElementById('prog-pill').textContent='✓ Complete!';
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────
+function initCourse(){
+  load();
+  if(state.cur>=unlocked()) state.cur=unlocked()-1;
+  renderGrid(); renderLesson();
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  if(localStorage.getItem('fahm_auth')==='true'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('course').style.display='block';
+    initCourse();
+  }
+});
+</script>
+</body>
+</html>
